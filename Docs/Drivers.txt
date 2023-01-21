@@ -1,0 +1,2 @@
+Problems with Serial communication; i.e. dropping/losing data, receiving incomplete data.
+Reinstall mBed windows serial drivers ( from https://os.mbed.com/handbook/Windows-serial-configuration ). The drivers provided in windows by default work, but appear to be unstable.
