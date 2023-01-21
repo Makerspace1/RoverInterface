@@ -1,0 +1,140 @@
+﻿@page "/"
+
+<PageTitle>Rover Command</PageTitle>
+
+@implements IDisposable
+@using RoverBlazor.Data
+@using RoverInterface
+@inject RoverCom Rover
+@inject IJSRuntime JS
+
+
+
+<h1>Rover Command</h1>
+
+@if(Error != null)
+{
+    <p><em>@Error</em></p>
+}
+else if (Messages == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div id="MessageBox">
+        @foreach (var message in Messages)
+        {
+            <p class="RoverMessage" style="color:@message.Color">@message.Message</p>
+        }
+    </div>
+}
+
+<input @bind="InputValue" @bind:event="oninput" @onkeydown="@OnKeyDown" />
+<button @onclick="@OnClickSend">Send</button>
+<button @onclick="@(() => OnClickCommand("RUN"))">Run</button>
+<button @onclick="@(() => OnClickCommand("LIST"))">List</button>
+<button @onclick="@(() => OnClickCommand("UNDO"))">Undo</button>
+<button @onclick="@(() => OnClickCommand("CLEAR"))">Clear</button>
+<hr/>
+<button @onclick="@(() => OnClickCommand("motor 1000 100 LV 1 LA 1 RV 1 RA 1"))">Run all motors</button>
+<button @onclick="@(() => OnClickCommand("servo LV 90","servo LA 90","servo RV 90","servo RA 90"))">Reset servos</button>
+<button @onclick="@(() => OnClickCommand("servo LV 45","servo LA 45","servo RV 45","servo RA 45"))">Servos 45</button>
+
+@code {
+    private List<RoverMessage>? Messages;
+    private string? Error;
+    private string? InputValue;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!Rover.IsOpen)
+        {
+            Rover.Open();
+        }
+
+        if (!Rover.IsOpen)
+        {
+            Error = "Could not open Com port";
+            return;
+        }
+        Messages = new List<RoverMessage>();
+        Rover.MessageReceived += MessageReceived;
+    }
+
+    void IDisposable.Dispose()
+    {
+        if(Rover != null)
+        {
+            Rover.MessageReceived -= MessageReceived;   
+        }
+    }
+
+
+    private void OnKeyDown(KeyboardEventArgs e)
+    {
+        if (e.Code == "Enter" || e.Code == "NumpadEnter")
+        {
+            SendMessage();
+            return;
+        }
+    }
+
+    private void OnClickCommand(params string[] commands)
+    {
+        foreach(string command in commands)
+        {
+            SendMessage(command);
+            Thread.Sleep(100);
+        }
+    }
+
+    private void OnClickSend(MouseEventArgs mouseEventArgs)
+    {
+        SendMessage();
+    }
+
+    private void SendMessage(string command)
+    {
+        Rover.Send(command);
+        AddMessage(new RoverMessage(command, "#000000"));
+    }
+
+    private void AddMessage(RoverMessage message)
+    {
+        Messages.Add(message);
+        while(Messages.Count > 100)
+        {
+            Messages.RemoveAt(0);
+        }
+
+        AutoScroll();
+    }
+
+    private void SendMessage()
+    {
+        if (InputValue == null || Messages == null) return;
+        SendMessage(InputValue);
+        InputValue = null;
+    }
+
+    private void MessageReceived(object? sender, RoverMessageReceivedEventArgs e)
+    {
+        if (Messages == null) return;
+        if (e.Message.StartsWith("$$"))
+        {
+            AddMessage(new RoverMessage(e.Message.Substring(2), "#ff0000"));
+        }
+        else
+        {
+            AddMessage(new RoverMessage(e.Message, "#00ff00"));
+        }
+        InvokeAsync(StateHasChanged);
+        AutoScroll();
+    }
+
+    private void AutoScroll()
+    {
+        InvokeAsync(() => { JS.InvokeVoidAsync("AutoScrollMessageBox", null); });
+    }
+}
