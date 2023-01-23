@@ -77,3 +77,7 @@ a, .btn-link {
 {
     margin: 0px;
 }
+
+.CommandInput{
+    width: 100%;
+}

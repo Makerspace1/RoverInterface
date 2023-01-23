@@ -30,16 +30,25 @@ else
     </div>
 }
 
-<input @bind="InputValue" @bind:event="oninput" @onkeydown="@OnKeyDown" />
-<button @onclick="@OnClickSend">Send</button>
-<button @onclick="@(() => OnClickCommand("RUN"))">Run</button>
-<button @onclick="@(() => OnClickCommand("LIST"))">List</button>
-<button @onclick="@(() => OnClickCommand("UNDO"))">Undo</button>
-<button @onclick="@(() => OnClickCommand("CLEAR"))">Clear</button>
+<input class="CommandInput" @bind="InputValue" @bind:event="oninput" @onkeydown="@OnKeyDown" />
+<br />
+    <button @onclick="@OnClickSend">Send</button>
+    <button @onclick="@(() => OnClickCommand("RUN"))">Run command queue</button>
+    <button @onclick="@(() => OnClickCommand("LIST"))">List command queue</button>
+    <button @onclick="@(() => OnClickCommand("UNDO"))">Undo last command</button>
+    <button @onclick="@(() => OnClickCommand("CLEAR"))">Clear command queue</button>
 <hr/>
-<button @onclick="@(() => OnClickCommand("motor 1000 100 LV 1 LA 1 RV 1 RA 1"))">Run all motors</button>
-<button @onclick="@(() => OnClickCommand("servo LV 90","servo LA 90","servo RV 90","servo RA 90"))">Reset servos</button>
-<button @onclick="@(() => OnClickCommand("servo LV 45","servo LA 45","servo RV 45","servo RA 45"))">Servos 45</button>
+<h5>Motorer rover</h5>
+<p>
+    <button @onclick="@(() => OnClickCommand("motor 1000 100 VF 1 HF 1 VB 1 HB 1"))">Kjør alle motorer</button>
+</p>
+<br />
+<h5>Styring rover</h5>
+<p>
+    <button @onclick="@(() => OnClickCommand("servo VF 90","servo HF 90","servo VB 90","servo HB 90"))">Rett fram</button>
+    <button @onclick="@(() => OnClickCommand("servo VF 45","servo HF 45","servo VB 45","servo HB 45"))">Servos 45</button>
+</p>
+<br />
 
 @code {
     private List<RoverMessage>? Messages;
@@ -127,7 +136,7 @@ else
         }
         else
         {
-            AddMessage(new RoverMessage(e.Message, "#00ff00"));
+            AddMessage(new RoverMessage(e.Message, "#0B8C00"));
         }
         InvokeAsync(StateHasChanged);
         AutoScroll();
