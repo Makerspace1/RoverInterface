@@ -46,7 +46,7 @@ namespace RoverInterface
             return new RoverCom(ports[selectedIndex]);
         }
 
-        ~RoverCom(){      
+        ~RoverCom(){     
             _serial.DataReceived -= DataReceived;
             Close();
         }
