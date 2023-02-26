@@ -40,8 +40,8 @@ else
 <hr/>
 <h5>Motorer rover</h5>
 <p>
-    <button @onclick="@(() => OnClickCommand("motor 1000 100 VF 1 HF 1 VB 1 HB 1"))">Kjør Rover rett fram</button>
-    <button @onclick="@(() => OnClickCommand("motor 1000 100 VF 0 HF 0 VB 0 HB 0"))">Kjør Rover baklengs</button>
+    <button @onclick="@(() => OnClickCommand("motor 1000 100 VF 1 HF 1 VB 1 HB 1"))">Kjør Rover fram i 1 sekund</button>
+    <button @onclick="@(() => OnClickCommand("motor 1000 100 VF 0 HF 0 VB 0 HB 0"))">Kjør Rover baklengs i 1 sekund</button>
 </p>
 <br />
 <h5>Styring rover</h5>
@@ -49,8 +49,10 @@ else
     <button @onclick="@(() => OnClickCommand("servo VF 90","servo HF 90","servo VB 90","servo HB 90"))">Rett fram</button>
     <button @onclick="@(() => OnClickCommand("servo VF 45","servo HF 45","servo VB 45","servo HB 45"))">Servos 45</button>
     <button @onclick="@(() => OnClickCommand("servo VF 125","servo HF 125","servo VB 125","servo HB 125"))">Servos 125</button>
-    <button @onclick="@(() => OnClickCommand("servo VF 70","servo HF 70","servo VB 90","servo HB 90"))">Sving til venstre</button>
-    <button @onclick="@(() => OnClickCommand("servo VF 120","servo HF 120","servo VB 90","servo HB 90"))">Sving til høyre</button>
+    <button @onclick="@(() => OnClickCommand("servo VF 45","servo HF 45","servo VB 135","servo HB 135"))">Skarp sving til venstre</button>
+    <button @onclick="@(() => OnClickCommand("servo VF 135","servo HF 135","servo VB 45","servo HB 45"))">Skarp sving til høyre</button>
+    <button @onclick="@(() => OnClickCommand("servo VF 80","servo HF 80","servo VB 100","servo HB 100"))">Slak sving til venstre</button>
+    <button @onclick="@(() => OnClickCommand("servo VF 100","servo HF 100","servo VB 80","servo HB 80"))">Slak sving til høyre</button>
 
 </p>
 <br />
