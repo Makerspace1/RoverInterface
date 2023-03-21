@@ -59,6 +59,17 @@ else
 </p>
 <br />
 
+<h5>Motorer Rover Prototype 1</h5>
+<p>
+    <button @onclick="@(() => OnClickCommand("motor 5000 100 VF 1 HF 1 VB 1 HB 1"))">Kjør Rover fram i 5 sekund</button>
+    <button @onclick="@(() => OnClickCommand("motor 5000 100 VF 0 HF 0 VB 0 HB 0"))">Kjør Rover bakover i 5 sekund</button>
+
+    <button @onclick="@(() => OnClickCommand("motor 10000 100 VF 1 HF 1 VB 1 HB 1"))">Kjør Rover fram i 10 sekund</button>
+    <button @onclick="@(() => OnClickCommand("motor 10000 100 VF 0 HF 0 VB 0 HB 0"))">Kjør Rover Bakover i 10 sekund</button>
+
+</p>
+<br />
+
 <h5>Styring rover</h5>
 <p>
     <button @onclick="@(() => OnClickCommand("servo VF 90","servo HF 90","servo VB 90","servo HB 90"))">Rett fram</button>
