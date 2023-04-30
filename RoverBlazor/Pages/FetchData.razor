@@ -67,6 +67,7 @@ else
 <h5>Styring rover</h5>
 <p>
     <button @onclick="@(() => OnClickCommand("servo VF 90","servo HF 90","servo VB 90","servo HB 90"))">Rett fram</button>
+    <button @onclick="@(() => OnClickCommand("servo VF 135","servo HF 45","servo VB 45","servo HB 135"))">Sving</button>
     <button @onclick="@(() => OnClickCommand("servo VF 45","servo HF 45","servo VB 45","servo HB 45"))">Servos 45</button>
     <button @onclick="@(() => OnClickCommand("servo VF 125","servo HF 125","servo VB 125","servo HB 125"))">Servos 125</button>
     <button @onclick="@(() => OnClickCommand("servo VF 51","servo HF 66","servo VB 129","servo HB 114"))">Skarp sving til venstre</button>
