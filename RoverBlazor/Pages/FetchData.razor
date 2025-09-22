@@ -38,35 +38,38 @@ else
     <button @onclick="@(() => OnClickCommand("UNDO"))">Undo last command</button>
     <button @onclick="@(() => OnClickCommand("CLEAR"))">Clear command queue</button>
 <hr/>
-<h5>Motorer Rover Full Fart (255) Velg STYRING ROVER først!</h5>
-<p>
-    <button @onclick="@(() => OnClickCommand("motor 10000 255 VF 1 HF 1 VB 1 HB 1 HM 1 VM 1"))">Kjør Rover fram i 10 sekund</button>
-    <button @onclick="@(() => OnClickCommand("motor 10000 255 VF 0 HF 0 VB 0 HB 0 HM 0 VM 0"))">Kjør Rover Bakover i 10 sekund</button>
-    <button @onclick="@(() => OnClickCommand("motor 10000 255 VF 1 HF 0 VB 1 HB 0 HM 0 VM 1"))">Sving høyre 10 sekund</button>
-    <button @onclick="@(() => OnClickCommand("motor 10000 255 VF 0 HF 1 VB 0 HB 1 HM 1 VM 0"))">Sving venstre 10 sekund</button>
-
-</p>
-<br />
-<h5>Motorer Rover Halv Fart (125) Velg STYRING ROVER først!</h5>
-<p>
-    <button @onclick="@(() => OnClickCommand("motor 10000 125 VF 1 HF 1 VB 1 HB 1 HM 1 VM 1"))">Kjør Rover fram i 10 sekund</button>
-    <button @onclick="@(() => OnClickCommand("motor 10000 125 VF 0 HF 0 VB 0 HB 0 HM 0 VM 0"))">Kjør Rover Bakover i 10 sekund</button>
-
-</p>
-<br />
-
-
-
-<h5>Styring rover</h5>
+<h5>
+ Skal Rover Rett Fram, Svinge, eller Krabbe?</h5>
 <p>
     <button @onclick="@(() => OnClickCommand("servo VF 90","servo HF 90","servo VB 90","servo HB 90"))">Rett fram</button>
     <button @onclick="@(() => OnClickCommand("servo VF 135","servo HF 45","servo VB 45","servo HB 135"))">Sving</button>
     <button @onclick="@(() => OnClickCommand("servo VF 45","servo HF 45","servo VB 45","servo HB 45"))">Krabbe til venstre</button>
     <button @onclick="@(() => OnClickCommand("servo VF 125","servo HF 125","servo VB 125","servo HB 125"))">Krabbe til høyre</button>
     
+</p>
+   
+    
+    <h5>
+    
+    Kjøring Rover fremover eller rygging i full fart (255)</h5>
+<p>
+    <button @onclick="@(() => OnClickCommand("motor 10000 255 VF 1 HF 1 VB 1 HB 1 HM 1 VM 1"))">Fremover i 10 sekund</button>
+    <button @onclick="@(() => OnClickCommand("motor 10000 255 VF 0 HF 0 VB 0 HB 0 HM 0 VM 0"))">Rygge i 10 sekund</button>
+    <button @onclick="@(() => OnClickCommand("motor 30000 255 VF 1 HF 1 VB 1 HB 1 HM 1 VM 1"))">Fremover i 30 sekund</button>
+    <button @onclick="@(() => OnClickCommand("motor 30000 255 VF 0 HF 0 VB 0 HB 0 HM 0 VM 0"))">Rygge i 30 sekund</button>
 
 </p>
 <br />
+<h5>Sving Rover til høyre eller til venstre</h5>
+<p>
+    <button @onclick="@(() => OnClickCommand("motor 10000 255 VF 1 HF 0 VB 1 HB 0 HM 0 VM 1"))">Sving høyre 10 sekund</button>
+    <button @onclick="@(() => OnClickCommand("motor 10000 255 VF 0 HF 1 VB 0 HB 1 HM 1 VM 0"))">Sving venstre 10 sekund</button>
+    
+
+</p>
+<br />
+
+
 
 @code {
     private List<RoverMessage>? Messages;
