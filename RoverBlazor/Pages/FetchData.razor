@@ -53,17 +53,17 @@ else
     
     Kjøring Rover fremover eller rygging i full fart (255)</h5>
 <p>
+    <button @onclick="@(() => OnClickCommand("motor 5000 255 VF 1 HF 1 VB 1 HB 1 HM 1 VM 1"))">Fremover i 5 sekund</button>
+    <button @onclick="@(() => OnClickCommand("motor 5000 255 VF 0 HF 0 VB 0 HB 0 HM 0 VM 0"))">Rygge i 5 sekund</button>
     <button @onclick="@(() => OnClickCommand("motor 10000 255 VF 1 HF 1 VB 1 HB 1 HM 1 VM 1"))">Fremover i 10 sekund</button>
     <button @onclick="@(() => OnClickCommand("motor 10000 255 VF 0 HF 0 VB 0 HB 0 HM 0 VM 0"))">Rygge i 10 sekund</button>
-    <button @onclick="@(() => OnClickCommand("motor 30000 255 VF 1 HF 1 VB 1 HB 1 HM 1 VM 1"))">Fremover i 30 sekund</button>
-    <button @onclick="@(() => OnClickCommand("motor 30000 255 VF 0 HF 0 VB 0 HB 0 HM 0 VM 0"))">Rygge i 30 sekund</button>
 
 </p>
 <br />
 <h5>Sving Rover til høyre eller til venstre</h5>
 <p>
-    <button @onclick="@(() => OnClickCommand("motor 10000 255 VF 1 HF 0 VB 1 HB 0 HM 0 VM 1"))">Sving høyre 10 sekund</button>
-    <button @onclick="@(() => OnClickCommand("motor 10000 255 VF 0 HF 1 VB 0 HB 1 HM 1 VM 0"))">Sving venstre 10 sekund</button>
+    <button @onclick="@(() => OnClickCommand("motor 5000 255 VF 1 HF 0 VB 1 HB 0 HM 0 VM 1"))">Sving høyre 5 sekund</button>
+    <button @onclick="@(() => OnClickCommand("motor 5000 255 VF 0 HF 1 VB 0 HB 1 HM 1 VM 0"))">Sving venstre 5 sekund</button>
     
 
 </p>
