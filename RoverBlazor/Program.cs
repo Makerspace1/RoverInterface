@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<RoverCom>(x => ActivatorUtilities.CreateInstance<RoverCom>(x, "COM5"));
+builder.Services.AddSingleton<RoverCom>(x => ActivatorUtilities.CreateInstance<RoverCom>(x, File.ReadAllText("COM.txt")));
 
 var app = builder.Build();
 
